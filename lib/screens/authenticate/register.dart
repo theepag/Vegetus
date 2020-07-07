@@ -24,18 +24,23 @@ class _RegisterState extends State<Register> {
     return loading
         ? Loading()
         : Scaffold(
-            backgroundColor: Colors.brown[100],
+            backgroundColor: Colors.white,
             appBar: AppBar(
-              backgroundColor: Colors.brown[400],
+              backgroundColor: Colors.green[600],
               elevation: 0.0,
               title: Text('Sign up to Vegetus'),
               actions: <Widget>[
                 FlatButton.icon(
-                    onPressed: () {
-                      widget.toggleView();
-                    },
-                    icon: Icon(Icons.person),
-                    label: Text("Sign In"))
+                  onPressed: () {
+                    widget.toggleView();
+                  },
+                  icon: Icon(
+                    Icons.person,
+                    color: Colors.white,
+                  ),
+                  label: Text("Sign In"),
+                  textColor: Colors.white,
+                )
               ],
             ),
             body: Container(
@@ -45,18 +50,20 @@ class _RegisterState extends State<Register> {
                   child: Column(
                     children: <Widget>[
                       SizedBox(height: 20.0),
-                      TextFormField(
-                        decoration:
-                            TextInputDecoration.copyWith(hintText: 'Email'),
-                        validator: (val) =>
-                            val.isEmpty ? 'Enter an email' : null,
-                        onChanged: (val) {
-                          setState(() {
-                            email = val;
-                          });
-                        },
-                      ),
-                      SizedBox(height: 20.0),
+                      Container(
+                          height: 50.0,
+                          child: TextFormField(
+                            decoration:
+                                TextInputDecoration.copyWith(hintText: 'Email'),
+                            validator: (val) =>
+                                val.isEmpty ? 'Enter an email' : null,
+                            onChanged: (val) {
+                              setState(() {
+                                email = val;
+                              });
+                            },
+                          )),
+                      SizedBox(height: 0.0),
                       TextFormField(
                         decoration:
                             TextInputDecoration.copyWith(hintText: "Password"),
@@ -71,28 +78,34 @@ class _RegisterState extends State<Register> {
                         },
                       ),
                       SizedBox(height: 20.0),
-                      RaisedButton(
-                          color: Colors.blue[400],
-                          child: Text(
-                            'Sign Up',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          onPressed: () async {
-                            setState(() {
-                              loading = true;
-                            });
-                            if (_formKey.currentState.validate()) {
-                              dynamic result =
-                                  await _auth.registerWithEmailAndPassword(
-                                      email, password);
-                              if (result == null) {
-                                setState(() {
-                                  error = 'Please supply a valid email';
-                                  loading = false;
-                                });
+                      Container(
+                        width: 500,
+                        height: 45,
+                        child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0)),
+                            color: Colors.green[600],
+                            child: Text(
+                              'Sign Up',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            onPressed: () async {
+                              setState(() {
+                                loading = true;
+                              });
+                              if (_formKey.currentState.validate()) {
+                                dynamic result =
+                                    await _auth.registerWithEmailAndPassword(
+                                        email, password);
+                                if (result == null) {
+                                  setState(() {
+                                    error = 'Please supply a valid email';
+                                    loading = false;
+                                  });
+                                }
                               }
-                            }
-                          }),
+                            }),
+                      ),
                       SizedBox(height: 12.0),
                       Text(
                         error,
