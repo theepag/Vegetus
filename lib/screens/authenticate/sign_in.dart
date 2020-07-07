@@ -28,19 +28,24 @@ class _SignInState extends State<SignIn> {
         : Scaffold(
             resizeToAvoidBottomPadding: false,
             backgroundColor: Colors.white,
-            // appBar: AppBar(
-            //   backgroundColor: Colors.brown[400],
-            //   elevation: 0.0,
-            //   title: Text('Sinn into Vegetus'),
-            //   actions: <Widget>[
-            //     FlatButton.icon(
-            //         onPressed: () {
-            //           widget.toggleView();
-            //         },
-            //         icon: Icon(Icons.person),
-            //         label: Text("Register"))
-            //   ],
-            // ),
+            appBar: AppBar(
+              backgroundColor: Colors.green[600],
+              elevation: 0.0,
+              title: Text('Sign into Vegetus'),
+              actions: <Widget>[
+                FlatButton.icon(
+                  onPressed: () {
+                    widget.toggleView();
+                  },
+                  icon: Icon(
+                    Icons.person,
+                    color: Colors.white,
+                  ),
+                  label: Text("Register"),
+                  textColor: Colors.white,
+                ),
+              ],
+            ),
             body: Container(
                 padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
                 child: Form(
@@ -48,12 +53,13 @@ class _SignInState extends State<SignIn> {
                   child: Column(
                     children: <Widget>[
                       Container(
-                        padding: new EdgeInsets.fromLTRB(0, 90, 0, 0),
+                        padding: new EdgeInsets.fromLTRB(0, 50, 0, 0),
                         child: Image(
                           image: AssetImage('graphics/logo.png'),
-                          width: 250.0,
+                          width: 200.0,
                         ),
                       ),
+                      SizedBox(height: 30.0),
                       Container(
                         height: 50.0,
                         child: TextFormField(
@@ -68,7 +74,7 @@ class _SignInState extends State<SignIn> {
                           },
                         ),
                       ),
-                      SizedBox(height: 20.0),
+                      SizedBox(height: 10.0),
                       Container(
                         height: 50,
                         child: TextFormField(
@@ -105,6 +111,7 @@ class _SignInState extends State<SignIn> {
                                 dynamic result =
                                     await _auth.signInWithEmailAndPassword(
                                         email, password);
+                                loading = false;
                                 if (result == null) {
                                   setState(() {
                                     error =
@@ -112,23 +119,9 @@ class _SignInState extends State<SignIn> {
                                     loading = false;
                                   });
                                 }
+                              } else {
+                                loading = false;
                               }
-                            }),
-                      ),
-                      Container(
-                        width: 500,
-                        height: 65,
-                        padding: new EdgeInsets.fromLTRB(0, 20, 0, 0),
-                        child: RaisedButton(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0)),
-                            color: Colors.green[600],
-                            child: Text(
-                              'Sign Up',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            onPressed: () async {
-                              widget.toggleView();
                             }),
                       ),
                       SizedBox(height: 12.0),
