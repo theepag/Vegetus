@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:vegetus/screens/authenticate/authenticate.dart';
 import 'package:provider/provider.dart';
 import 'package:vegetus/models/user.dart';
-import 'package:vegetus/screens/home/home.dart';
+
+import 'package:vegetus/screens/userNavigation.dart';
 
 class Wrapper extends StatelessWidget {
   @override
@@ -12,7 +13,7 @@ class Wrapper extends StatelessWidget {
     if (user == null) {
       return Authenticate();
     } else {
-      return Home();
+      return UserNavigation();
     }
   }
 }

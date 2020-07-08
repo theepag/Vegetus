@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:vegetus/services/auth.dart';
 
-class Home extends StatelessWidget {
+class Profile extends StatefulWidget {
+  @override
+  _ProfileState createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
   AuthServices _auth = AuthServices();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text('Profile'),
         backgroundColor: Colors.green[600],
-        elevation: 0.0,
         actions: <Widget>[
           FlatButton.icon(
             icon: Icon(
