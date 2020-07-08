@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:vegetus/services/auth.dart';
 
-class Home extends StatelessWidget {
+class Cart extends StatefulWidget {
+  @override
+  _CartState createState() => _CartState();
+}
+
+class _CartState extends State<Cart> {
   AuthServices _auth = AuthServices();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
         backgroundColor: Colors.green[600],
-        elevation: 0.0,
+        title: Text('Cart'),
         actions: <Widget>[
           FlatButton.icon(
             icon: Icon(
