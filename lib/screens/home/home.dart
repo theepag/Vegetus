@@ -24,6 +24,11 @@ class Home extends StatelessWidget {
           )
         ],
       ),
+      body: Container(
+        child: Container(
+          height: 50,
+        ),
+      ),
     );
   }
 }
