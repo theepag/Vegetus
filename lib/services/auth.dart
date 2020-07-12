@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:vegetus/models/user.dart';
+import 'package:vegetus/services/database.dart';
 
 class AuthServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -43,13 +44,18 @@ class AuthServices {
 
   // register with email and password
 
-  Future registerWithEmailAndPassword(String email, String password) async {
+  Future registerWithEmailAndPassword(String name, String email,
+      String password, String phone, String location) async {
     email = email.trim();
     password = password.trim();
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
+
+      //create a new document for the user with the uid
+      await DatabaseService(uid: user.uid)
+          .updateUserData(name, email, phone, location);
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());

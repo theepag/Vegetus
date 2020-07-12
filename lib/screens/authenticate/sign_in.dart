@@ -80,9 +80,11 @@ class _SignInState extends State<SignIn> {
                         child: TextFormField(
                           decoration: TextInputDecoration.copyWith(
                               hintText: "Password"),
-                          validator: (val) => val.length < 6
-                              ? 'Enter a password 6+ char long'
-                              : null,
+                          validator: (val) => val.isEmpty
+                              ? 'Enter the password'
+                              : val.length < 6
+                                  ? 'Enter a password 6+ char long'
+                                  : null,
                           obscureText: true,
                           onChanged: (val) {
                             setState(() {

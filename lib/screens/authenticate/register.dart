@@ -14,8 +14,12 @@ class _RegisterState extends State<Register> {
   final AuthServices _auth = AuthServices();
   final _formKey = GlobalKey<FormState>();
   bool loading = false;
+
+  String name = "";
   String email = "";
   String password = "";
+  String phone = "";
+  String location = "";
 
   String error = "";
 
@@ -24,6 +28,7 @@ class _RegisterState extends State<Register> {
     return loading
         ? Loading()
         : Scaffold(
+            resizeToAvoidBottomPadding: false,
             backgroundColor: Colors.white,
             appBar: AppBar(
               backgroundColor: Colors.green[600],
@@ -50,6 +55,19 @@ class _RegisterState extends State<Register> {
                   child: Column(
                     children: <Widget>[
                       SizedBox(height: 20.0),
+                      TextFormField(
+                        decoration:
+                            TextInputDecoration.copyWith(hintText: "Name"),
+                        validator: (val) => val.isEmpty ? 'Enter a name' : null,
+                        onChanged: (val) {
+                          setState(() {
+                            name = val;
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
                       Container(
                           height: 50.0,
                           child: TextFormField(
@@ -63,17 +81,49 @@ class _RegisterState extends State<Register> {
                               });
                             },
                           )),
-                      SizedBox(height: 0.0),
+                      SizedBox(height: 10.0),
                       TextFormField(
                         decoration:
                             TextInputDecoration.copyWith(hintText: "Password"),
-                        validator: (val) => val.length < 6
-                            ? 'Enter a password 6+ char long'
-                            : null,
+                        validator: (val) => val.isEmpty
+                            ? 'Enter password'
+                            : val.length < 6
+                                ? 'Enter a password 6+ char long'
+                                : null,
                         obscureText: true,
                         onChanged: (val) {
                           setState(() {
                             password = val;
+                          });
+                        },
+                      ),
+                      SizedBox(height: 10.0),
+                      TextFormField(
+                        keyboardType: TextInputType.phone,
+                        decoration:
+                            TextInputDecoration.copyWith(hintText: 'Phone'),
+                        validator: (val) => val.isEmpty
+                            ? 'Enter mobile numer'
+                            : val.length == 10
+                                ? null
+                                : 'Enter phone number in 10 digits',
+                        onChanged: (val) {
+                          setState(() {
+                            phone = val;
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      TextFormField(
+                        decoration:
+                            TextInputDecoration.copyWith(hintText: 'Location'),
+                        validator: (val) =>
+                            val.isEmpty ? 'Enter your location' : null,
+                        onChanged: (val) {
+                          setState(() {
+                            location = val;
                           });
                         },
                       ),
@@ -96,13 +146,15 @@ class _RegisterState extends State<Register> {
                               if (_formKey.currentState.validate()) {
                                 dynamic result =
                                     await _auth.registerWithEmailAndPassword(
-                                        email, password);
+                                        name, email, password, phone, location);
                                 if (result == null) {
                                   setState(() {
                                     error = 'Please supply a valid email';
                                     loading = false;
                                   });
                                 }
+                              } else {
+                                loading = false;
                               }
                             }),
                       ),
