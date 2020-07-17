@@ -6,9 +6,25 @@ class DatabaseService {
   final CollectionReference userCollection =
       Firestore.instance.collection('users');
 
+  final CollectionReference vegetableCollection =
+      Firestore.instance.collection('vegetable');
+
   Future updateUserData(
       String name, String email, String phone, String location) async {
     return await userCollection.document(uid).setData(
         {'Name': name, 'Email': email, 'phone': phone, 'location': location});
+  }
+
+  Future updateVegetableData() async {
+    return await vegetableCollection.document(uid).setData({
+      'Vegetable Name': 'Tomato',
+      'Price': '80',
+      'Owner': uid,
+      'Farm Name': 'NK Farm'
+    });
+  }
+
+  Stream<QuerySnapshot> get vegetables {
+    return vegetableCollection.snapshots();
   }
 }
