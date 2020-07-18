@@ -72,7 +72,7 @@ class Home extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     Container(
-                      padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                      padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
                       child: Text(
                         "Categories",
                         textAlign: TextAlign.left,
@@ -82,17 +82,157 @@ class Home extends StatelessWidget {
                     ),
                   ],
                 ),
-                Row(
+                SizedBox(
+                  height: 25,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    SizedBox(
-                      height: 100,
-                    ),
-                    Column(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
-                        FlatButton(
-                            onPressed: null,
-                            child: Image.asset('graphics/tomato.png')),
-                        Text("data")
+                        Container(
+                          child: Column(
+                            children: <Widget>[
+                              FlatButton(
+                                  onPressed: null,
+                                  child: Image.asset('graphics/tomato.png',
+                                      height: 50, width: 50)),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text("Tomato")
+                            ],
+                          ),
+                        ),
+                        Container(
+                          child: Column(
+                            children: <Widget>[
+                              FlatButton(
+                                  onPressed: null,
+                                  child: Image.asset('graphics/broccoli.png',
+                                      height: 50, width: 50)),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text("Broccoli")
+                            ],
+                          ),
+                        ),
+                        Container(
+                          child: Column(
+                            children: <Widget>[
+                              FlatButton(
+                                  onPressed: null,
+                                  child: Image.asset('graphics/potato.png',
+                                      height: 50, width: 50)),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text("Potato")
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Container(
+                          child: Column(
+                            children: <Widget>[
+                              FlatButton(
+                                  onPressed: null,
+                                  child: Image.asset('graphics/eggplant.png',
+                                      height: 50, width: 50)),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text("Eggplant")
+                            ],
+                          ),
+                        ),
+                        Container(
+                          child: Column(
+                            children: <Widget>[
+                              FlatButton(
+                                  onPressed: null,
+                                  child: Image.asset('graphics/carrot.png',
+                                      height: 50, width: 50)),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text("Carrot")
+                            ],
+                          ),
+                        ),
+                        Container(
+                          child: Column(
+                            children: <Widget>[
+                              FlatButton(
+                                  onPressed: null,
+                                  child: Image.asset('graphics/corn.png',
+                                      height: 50, width: 50)),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text("Corn")
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Container(
+                          child: Column(
+                            children: <Widget>[
+                              FlatButton(
+                                  onPressed: null,
+                                  child: Image.asset('graphics/tomato.png',
+                                      height: 50, width: 50)),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text("Tomato")
+                            ],
+                          ),
+                        ),
+                        Container(
+                          child: Column(
+                            children: <Widget>[
+                              FlatButton(
+                                  onPressed: null,
+                                  child: Image.asset('graphics/broccoli.png',
+                                      height: 50, width: 50)),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text("Broccoli")
+                            ],
+                          ),
+                        ),
+                        Container(
+                          child: Column(
+                            children: <Widget>[
+                              FlatButton(
+                                  onPressed: null,
+                                  child: Image.asset('graphics/potato.png',
+                                      height: 50, width: 50)),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text("Potato")
+                            ],
+                          ),
+                        ),
                       ],
                     )
                   ],
