@@ -20,6 +20,7 @@ class _RegisterState extends State<Register> {
   String password = "";
   String phone = "";
   String location = "";
+  String userType = "Customer";
 
   String error = "";
 
@@ -128,6 +129,30 @@ class _RegisterState extends State<Register> {
                         },
                       ),
                       SizedBox(height: 20.0),
+
+                      //Droupdown list
+
+                      DropdownButton<String>(
+                        value: userType,
+                        iconSize: 24,
+                        elevation: 16,
+                        underline: Container(
+                          height: 2,
+                        ),
+                        onChanged: (String newValue) {
+                          setState(() {
+                            userType = newValue;
+                          });
+                        },
+                        items: <String>['Customer', 'Farmer']
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      ),
+
                       Container(
                         width: 500,
                         height: 45,
@@ -146,7 +171,12 @@ class _RegisterState extends State<Register> {
                               if (_formKey.currentState.validate()) {
                                 dynamic result =
                                     await _auth.registerWithEmailAndPassword(
-                                        name, email, password, phone, location);
+                                        name,
+                                        email,
+                                        password,
+                                        phone,
+                                        location,
+                                        userType);
                                 if (result == null) {
                                   setState(() {
                                     error = 'Please supply a valid email';
