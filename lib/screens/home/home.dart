@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:vegetus/screens/home/Tomato.dart';
 import 'package:vegetus/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:vegetus/services/database.dart';
@@ -95,7 +96,13 @@ class Home extends StatelessWidget {
                           child: Column(
                             children: <Widget>[
                               FlatButton(
-                                  onPressed: null,
+                                  onPressed: () => {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => Tomato()),
+                                        ),
+                                      },
                                   child: Image.asset('graphics/tomato.png',
                                       height: 50, width: 50)),
                               SizedBox(
@@ -109,7 +116,7 @@ class Home extends StatelessWidget {
                           child: Column(
                             children: <Widget>[
                               FlatButton(
-                                  onPressed: null,
+                                  onPressed: () => {},
                                   child: Image.asset('graphics/broccoli.png',
                                       height: 50, width: 50)),
                               SizedBox(
