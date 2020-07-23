@@ -8,10 +8,17 @@ import 'package:vegetus/screens/farmerNavigation.dart';
 
 import 'package:vegetus/screens/userNavigation.dart';
 
-class Wrapper extends StatelessWidget {
-  String userType;
+class Wrapper extends StatefulWidget {
+  @override
+  _WrapperState createState() => _WrapperState();
+}
+
+class _WrapperState extends State<Wrapper> {
   final Firestore database = Firestore.instance;
+
   final firestoreInstance = Firestore.instance;
+  String userType = "";
+
   @override
   Widget build(BuildContext context) {
     //Return either home or login
@@ -19,21 +26,25 @@ class Wrapper extends StatelessWidget {
     if (user == null) {
       return Authenticate();
     } else {
-      _onPressed();
-      return UserNavigation();
+      getUserType();
+      if (userType == 'Farmer') {
+        return FarmerNavigation();
+      } else {
+        return UserNavigation();
+      }
     }
   }
 
-  _onPressed() async {
+  getUserType() async {
     var firebaseUser = await FirebaseAuth.instance.currentUser();
-    firestoreInstance
+    var document = await firestoreInstance
         .collection("users")
         .document(firebaseUser.uid)
-        .get()
-        .then((DocumentSnapshot snapshot) {
-      var document = snapshot.data;
-      userType = document['userType'];
+        .get();
+
+    String type = document["userType"];
+    setState(() {
+      userType = type;
     });
-    print(userType);
   }
 }
