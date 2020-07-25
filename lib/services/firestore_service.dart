@@ -8,4 +8,7 @@ class FirestoreService {
   Future<void> saveProduct(Product product){
     return _db.collection('products').document(product.productId).setData(product.toMap());
   }
+  Stream<List<Product>> getProducts(){
+    return _db.collection('products').snapshots().map((snapshot) => snapshot.documents.map((document) => Product.fromFirestore(document.data)).toList());
+  }
 }

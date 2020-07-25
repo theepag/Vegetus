@@ -15,4 +15,10 @@ class Product{
       'des' : des
     };
   }
+  Product.fromFirestore(Map<String, dynamic> firestore)
+  :productId=firestore['productId'],
+  name=firestore['name'],
+  price=firestore['price'],
+  kg=firestore['kg'],
+  des=firestore['des'];
 }
