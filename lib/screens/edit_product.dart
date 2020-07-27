@@ -19,14 +19,48 @@ class _EditProductState extends State<EditProduct> {
         padding:EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
                 
         child: ListView(children: <Widget>[
-          Container(
-                       //padding: new EdgeInsets.fromLTRB(0, 50, 0, 0),
-                        child: Image(
-                          image: AssetImage('graphics/logo.png'),
-                          width: 200.0,
-                        ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Align(
+                alignment: Alignment.center,
+                child: CircleAvatar(
+                  backgroundColor: Colors.green,
+                  radius: 100,
+                  child: ClipOval(
+                    child: SizedBox(
+                      height: 180,
+                      width: 180,
+                      child: Image.network(
+                        "https://blogs.extension.iastate.edu/spendsmart/files/2014/06/vegetables-variety.jpg",
+                        fit: BoxFit.fill,
                       ),
-                      SizedBox(height: 10.0),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 60),
+                child: IconButton(
+                  icon: Icon(
+                    Icons.camera,
+                    size: 30.0,
+                  ) ,
+                  onPressed: (){
+
+                  }
+                  ),
+              ),
+            ],
+          ),
+          // Container(
+          //              //padding: new EdgeInsets.fromLTRB(0, 50, 0, 0),
+          //               child: Image(
+          //                 image: AssetImage('graphics/logo.png'),
+          //                 width: 200.0,
+          //               ),
+          //             ),
+          //             SizedBox(height: 10.0),
           Container(
                         height: 50,
           child:TextField(
