@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Order extends StatelessWidget {
+class Order extends StatefulWidget {
+  @override
+  _OrderState createState() => _OrderState();
+}
+
+class _OrderState extends State<Order> {
+  String productType = 'One';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

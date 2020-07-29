@@ -7,6 +7,7 @@ import 'package:vegetus/models/user.dart';
 import 'package:vegetus/screens/farmerNavigation.dart';
 
 import 'package:vegetus/screens/userNavigation.dart';
+import 'package:vegetus/shared/loading.dart';
 
 class Wrapper extends StatefulWidget {
   @override
@@ -18,19 +19,31 @@ class _WrapperState extends State<Wrapper> {
 
   final firestoreInstance = Firestore.instance;
   String userType = "";
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
     //Return either home or login
     final user = Provider.of<User>(context);
+
     if (user == null) {
       return Authenticate();
     } else {
-      getUserType();
+      setState(() {
+        isLoading = true;
+      });
+      if (isLoading) {
+        getUserType();
+        Loading();
+      }
+
       if (userType == 'Farmer') {
+        // print("object");
         return FarmerNavigation();
-      } else {
+      } else if (userType == 'Customer') {
         return UserNavigation();
+      } else {
+        return null;
       }
     }
   }
@@ -45,6 +58,7 @@ class _WrapperState extends State<Wrapper> {
     String type = document["userType"];
     setState(() {
       userType = type;
+      isLoading = false;
     });
   }
 }
