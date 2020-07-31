@@ -96,7 +96,13 @@ class Home extends StatelessWidget {
                           child: Column(
                             children: <Widget>[
                               FlatButton(
-                                  onPressed: () => {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Tomato()),
+                                    );
+                                  },
                                   child: Image.asset('graphics/tomato.png',
                                       height: 50, width: 50)),
                               SizedBox(
