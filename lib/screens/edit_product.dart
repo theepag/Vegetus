@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -21,24 +22,26 @@ class _EditProductState extends State<EditProduct> {
       var image = await ImagePicker.pickImage(source: ImageSource.gallery);
       setState(() {
         _image = image;
-        print('Image path $_image');
-      });
-    }
-
-    Future uploadPic(BuildContext context) async {
-      String fileName = basename(_image.path);
-      StorageReference firebaseStorageRef =
-          FirebaseStorage.instance.ref().child(fileName);
-      StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
-      StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
-      setState(() {
-        print("successfully uploaded");
-        Scaffold.of(context).showSnackBar(
-            SnackBar(content: Text('Product is successfully uploaded')));
       });
     }
 
     final productProvider = Provider.of<ProductProvider>(context);
+
+    Future uploadPic(BuildContext context) async {
+      String fileName = basename(_image.path);
+      productProvider.changeFilePath(fileName);
+
+      StorageReference firebaseStorageRef =
+          FirebaseStorage.instance.ref().child(fileName);
+      StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
+      StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
+      var firebaseUser = await FirebaseAuth.instance.currentUser();
+      productProvider.changeOwnerId(firebaseUser.uid);
+      setState(() {
+        Scaffold.of(context).showSnackBar(
+            SnackBar(content: Text('Product is successfully uploaded')));
+      });
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -160,7 +163,14 @@ class _EditProductState extends State<EditProduct> {
                       uploadPic(context);
 
                       productProvider.changeName(productType);
+
                       productProvider.saveProduct();
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => (FarmerProducts())),
+                      );
                     },
                   ),
                 ),
