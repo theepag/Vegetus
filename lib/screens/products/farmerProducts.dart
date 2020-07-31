@@ -33,15 +33,6 @@ class FarmerProducts extends StatelessWidget {
                 itemCount: products.length,
                 itemBuilder: (context, index) {
                   if (products[index].ownerId == user.uid) {
-                    // return Container(
-                    //   child: ListTile(
-                    //     title: Text(
-                    //       products[index].name,
-                    //     ),
-                    //     subtitle: Text(products[index].price.toString()),
-                    //   ),
-
-                    // );
                     return Card(
                       child: ListTile(
                         leading: Image.asset('graphics/broccoli.png'),
