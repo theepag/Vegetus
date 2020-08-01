@@ -52,8 +52,16 @@ class ProductProvider with ChangeNotifier {
   changeOwnerId(String value) {
     _ownerId = value;
   }
-
+loadValues(Product product){
+  _name=product.name;
+  _price=product.price;
+  _kg=product.kg;
+  _des=product.des;
+  _filePath=product.filePath;
+  _ownerId=product.ownerId;
+}
   saveProduct() {
+    if(_productId==null){
     var newProduct = Product(
         name: name,
         price: price,
@@ -63,5 +71,21 @@ class ProductProvider with ChangeNotifier {
         ownerId: ownerId,
         productId: uuid.v4());
     firestoreService.saveProduct(newProduct);
+  }
+  else{
+    var updateProduct = Product(
+        name: name,
+        price: _price,
+        kg: kg,
+        des: des,
+        filePath: filePath,
+        ownerId: ownerId,
+        productId: _productId);
+    firestoreService.saveProduct(updateProduct);
+  }
+  }
+
+  removeProduct(String productId){
+    firestoreService.removeProduct(productId);
   }
 }

@@ -3,15 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vegetus/models/user.dart';
 import 'package:vegetus/services/auth.dart';
+import 'package:vegetus/models/farmer.dart';
 
-class FarmerProfile extends StatefulWidget {
-  @override
-  _FarmerProfileState createState() => _FarmerProfileState();
-}
-
-class _FarmerProfileState extends State<FarmerProfile> {
+class FarmerProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+ //final products=Provider.of<List<Farmer>>(context);
+    var firebaseUser = FirebaseAuth.instance.currentUser();
     final user = Provider.of<User>(context);
 
     AuthServices _auth = AuthServices();
@@ -37,3 +35,6 @@ class _FarmerProfileState extends State<FarmerProfile> {
     );
   }
 }
+
+    
+  

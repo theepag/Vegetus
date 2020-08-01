@@ -3,12 +3,15 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:vegetus/models/product.dart';
 import 'package:vegetus/providers/product_provider.dart';
 import 'package:vegetus/screens/products/farmerProducts.dart';
 import 'package:path/path.dart';
 import 'dart:io';
 
 class EditProduct extends StatefulWidget {
+  final Product product;
+  EditProduct([this.product]);
   @override
   _EditProductState createState() => _EditProductState();
 }
