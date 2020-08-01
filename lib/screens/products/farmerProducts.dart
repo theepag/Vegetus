@@ -4,11 +4,13 @@ import 'package:provider/provider.dart';
 import 'package:vegetus/models/product.dart';
 import 'package:vegetus/models/user.dart';
 import 'package:vegetus/screens/edit_product.dart';
+import 'package:vegetus/screens/update_product.dart';
 
 class FarmerProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final products = Provider.of<List<Product>>(context);
+    //final products = Provider.of<List<Product>>(context);
+    final products=Provider.of<List<Product>>(context);
     var firebaseUser = FirebaseAuth.instance.currentUser();
     final user = Provider.of<User>(context);
     return Scaffold(
@@ -40,6 +42,9 @@ class FarmerProducts extends StatelessWidget {
                         subtitle:
                             Text(products[index].price.toString() + " Rs"),
                         trailing: Icon(Icons.more_vert),
+                        onTap: (){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) =>UpdateProduct(products[index])));
+                        },
                       ),
                     );
                   } else {

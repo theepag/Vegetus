@@ -18,7 +18,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context)=>ProductProvider()),
-        StreamProvider(create: (context)=>firestoreService.getProducts()),
+        StreamProvider(create: (context)=>firestoreService.getProduct(),
+        
+        ),
       ],
       
           child: StreamProvider<User>.value(
