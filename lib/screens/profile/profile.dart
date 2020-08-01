@@ -28,6 +28,7 @@ class _ProfileState extends State<Profile> {
           )
         ],
       ),
+      body: Text("data"),
     );
   }
 }

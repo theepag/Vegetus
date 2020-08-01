@@ -1,9 +1,19 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:vegetus/models/user.dart';
 import 'package:vegetus/services/auth.dart';
 
-class FarmerProfile extends StatelessWidget {
+class FarmerProfile extends StatefulWidget {
+  @override
+  _FarmerProfileState createState() => _FarmerProfileState();
+}
+
+class _FarmerProfileState extends State<FarmerProfile> {
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
+
     AuthServices _auth = AuthServices();
     return Scaffold(
       appBar: AppBar(
@@ -23,6 +33,7 @@ class FarmerProfile extends StatelessWidget {
           )
         ],
       ),
+      body: Text(user.uid),
     );
   }
 }
