@@ -37,11 +37,13 @@ class FarmerProducts extends StatelessWidget {
                       child: ListTile(
                         leading: Image.asset('graphics/broccoli.png'),
                         title: Text(products[index].name),
-                        subtitle: Text(
-                            products[index].price.round().toString() + " Rs"),
+                        subtitle:
+                            Text(products[index].price.toString() + " Rs"),
                         trailing: Icon(Icons.more_vert),
                       ),
                     );
+                  } else {
+                    return SizedBox();
                   }
                 })
             : Center(child: CircularProgressIndicator()));
