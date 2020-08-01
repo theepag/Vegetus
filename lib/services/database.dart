@@ -11,9 +11,10 @@ class DatabaseService {
       Firestore.instance.collection('vegetable');
 
   Future updateUserData(String name, String email, String phone,
-      String location, String userType) async {
+      String location, String userType, String uid) async {
     return await userCollection.document(uid).setData({
       'Name': name,
+      'UserId': uid,
       'Email': email,
       'phone': phone,
       'location': location,
