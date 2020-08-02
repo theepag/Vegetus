@@ -41,7 +41,7 @@ class FarmerProducts extends StatelessWidget {
                         title: Text(products[index].name),
                         subtitle:
                             Text(products[index].price.toString() + " Rs"),
-                        trailing: Icon(Icons.more_vert),
+                        
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(builder: (context) =>UpdateProduct(products[index])));
                         },
