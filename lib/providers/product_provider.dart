@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 import 'package:vegetus/models/product.dart';
+import 'package:vegetus/screens/update_product.dart';
 import 'package:vegetus/services/firestore_service.dart';
 
 class ProductProvider with ChangeNotifier {
@@ -52,27 +53,44 @@ class ProductProvider with ChangeNotifier {
   changeOwnerId(String value) {
     _ownerId = value;
   }
-loadValues(Product product){
-  _name=product.name;
-  _price=product.price;
-  _kg=product.kg;
-  _des=product.des;
-  _filePath=product.filePath;
-  _ownerId=product.ownerId;
-}
-  saveProduct() {
-    if(_productId==null){
-    var newProduct = Product(
-        name: name,
-        price: price,
-        kg: kg,
-        des: des,
-        filePath: filePath,
-        ownerId: ownerId,
-        productId: uuid.v4());
-    firestoreService.saveProduct(newProduct);
+
+  loadValues(Product product) {
+    _name = product.name;
+    _price = product.price;
+    _kg = product.kg;
+    _des = product.des;
+    _filePath = product.filePath;
+    _ownerId = product.ownerId;
   }
-  else{
+
+  saveProduct() {
+    if (_productId == null) {
+      var newProduct = Product(
+          name: name,
+          price: price,
+          kg: kg,
+          des: des,
+          filePath: filePath,
+          ownerId: ownerId,
+          productId: uuid.v4());
+
+      print(newProduct.name);
+      firestoreService.saveProduct(newProduct);
+    } else {
+      var updateProduct = Product(
+          name: name,
+          price: _price,
+          kg: kg,
+          des: des,
+          filePath: filePath,
+          ownerId: ownerId,
+          productId: _productId);
+      print(kg);
+      firestoreService.saveProduct(updateProduct);
+    }
+  }
+
+  updateProducts() {
     var updateProduct = Product(
         name: name,
         price: _price,
@@ -81,11 +99,11 @@ loadValues(Product product){
         filePath: filePath,
         ownerId: ownerId,
         productId: _productId);
-    firestoreService.saveProduct(updateProduct);
-  }
+    print(updateProduct.name);
+    //  firestoreService.saveProduct(updateProduct);
   }
 
-  removeProduct(String productId){
+  removeProduct(String productId) {
     firestoreService.removeProduct(productId);
   }
 }

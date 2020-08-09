@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
@@ -13,9 +12,8 @@ class UpdateProduct extends StatefulWidget {
 }
 
 class _UpdateProductState extends State<UpdateProduct> {
-
-  final nameController=TextEditingController();
-  final priceController=TextEditingController();
+  final nameController = TextEditingController();
+  final priceController = TextEditingController();
 
   @override
   void dispose() {
@@ -23,34 +21,32 @@ class _UpdateProductState extends State<UpdateProduct> {
     priceController.dispose();
     super.dispose();
   }
+
   @override
   void initState() {
-    if(widget.product==null){
-      nameController.text="";
-      priceController.text="";
-      new Future.delayed(Duration.zero, (){
-         final productProvider = Provider.of<ProductProvider>(context,listen: false);
-         productProvider.loadValues(Product());
+    if (widget.product == null) {
+      nameController.text = "";
+      priceController.text = "";
+      new Future.delayed(Duration.zero, () {
+        final productProvider =
+            Provider.of<ProductProvider>(context, listen: false);
+        productProvider.loadValues(Product());
       });
-    }
-    else{
-      nameController.text=widget.product.name;
-      priceController.text=widget.product.price.toString();
-      new Future.delayed(Duration.zero, (){
-         final productProvider = Provider.of<ProductProvider>(context,listen: false);
-         productProvider.loadValues(widget.product);
+    } else {
+      nameController.text = widget.product.name;
+      priceController.text = widget.product.price.toString();
+      new Future.delayed(Duration.zero, () {
+        final productProvider =
+            Provider.of<ProductProvider>(context, listen: false);
+        productProvider.loadValues(widget.product);
       });
-     
     }
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    
-
     final productProvider = Provider.of<ProductProvider>(context);
-
-    
 
     return Scaffold(
       appBar: AppBar(
@@ -63,22 +59,21 @@ class _UpdateProductState extends State<UpdateProduct> {
             padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
             child: ListView(
               children: <Widget>[
-                
-               Container(
-                        padding: new EdgeInsets.fromLTRB(0, 10, 0, 0),
-                        child: Image(
-                          image: AssetImage('graphics/logo.png'),
-                          width: 200.0,
-                        ),
-                      ),
-                      SizedBox(height: 10.0),
+                Container(
+                  padding: new EdgeInsets.fromLTRB(0, 10, 0, 0),
+                  child: Image(
+                    image: AssetImage('graphics/logo.png'),
+                    width: 200.0,
+                  ),
+                ),
+                SizedBox(height: 10.0),
                 Container(
                   height: 50.0,
                   child: TextField(
                     decoration: InputDecoration(hintText: 'Product Name'),
                     controller: nameController,
                     onChanged: (value) {
-                      productProvider.changeKg(value);
+                      productProvider.changeKg("value");
                     },
                   ),
                 ),
@@ -91,8 +86,6 @@ class _UpdateProductState extends State<UpdateProduct> {
                     onChanged: (value) => productProvider.changePrice(value),
                   ),
                 ),
-                
-                
                 SizedBox(
                   height: 20.0,
                 ),
@@ -108,17 +101,13 @@ class _UpdateProductState extends State<UpdateProduct> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
-                     
+                      productProvider.updateProducts();
 
-                      
-
-                      productProvider.saveProduct();
-
-                     Navigator.of(context).pop();
+                      Navigator.of(context).pop();
                     },
                   ),
                 ),
-                 SizedBox(
+                SizedBox(
                   height: 20.0,
                 ),
                 Container(
@@ -133,13 +122,9 @@ class _UpdateProductState extends State<UpdateProduct> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
-                     
                       productProvider.removeProduct(widget.product.productId);
-                      
-                    
-                     Navigator.of(context).pop();
-                     
-                     
+
+                      Navigator.of(context).pop();
                     },
                   ),
                 ),
