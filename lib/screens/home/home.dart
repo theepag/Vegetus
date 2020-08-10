@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:vegetus/screens/home/Tomato.dart';
+import 'package:vegetus/screens/home/UserProduct.dart';
+import 'package:vegetus/screens/home/UserProductList.dart';
 import 'package:vegetus/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:vegetus/services/database.dart';
@@ -100,7 +102,8 @@ class Home extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Tomato()),
+                                          builder: (context) =>
+                                              UserProductList()),
                                     );
                                   },
                                   child: Image.asset('graphics/tomato.png',
