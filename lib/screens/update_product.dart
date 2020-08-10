@@ -12,29 +12,33 @@ class UpdateProduct extends StatefulWidget {
 }
 
 class _UpdateProductState extends State<UpdateProduct> {
-  final nameController = TextEditingController();
+  final kgController = TextEditingController();
   final priceController = TextEditingController();
+  final desController = TextEditingController();
 
   @override
   void dispose() {
-    nameController.dispose();
+    kgController.dispose();
     priceController.dispose();
+    desController.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
     if (widget.product == null) {
-      nameController.text = "";
+      kgController.text = "";
       priceController.text = "";
+      desController.text = "";
       new Future.delayed(Duration.zero, () {
         final productProvider =
             Provider.of<ProductProvider>(context, listen: false);
         productProvider.loadValues(Product());
       });
     } else {
-      nameController.text = widget.product.name;
+      kgController.text = widget.product.kg.toString();
       priceController.text = widget.product.price.toString();
+      desController.text = widget.product.des;
       new Future.delayed(Duration.zero, () {
         final productProvider =
             Provider.of<ProductProvider>(context, listen: false);
@@ -70,8 +74,8 @@ class _UpdateProductState extends State<UpdateProduct> {
                 Container(
                   height: 50.0,
                   child: TextField(
-                    decoration: InputDecoration(hintText: 'Product Name'),
-                    controller: nameController,
+                    decoration: InputDecoration(hintText: 'Product Kg'),
+                    controller: kgController,
                     onChanged: (value) {
                       productProvider.changeKg("value");
                     },
@@ -84,6 +88,15 @@ class _UpdateProductState extends State<UpdateProduct> {
                     // productProvider.changeName(value);
                     decoration: InputDecoration(hintText: 'Product Price'),
                     onChanged: (value) => productProvider.changePrice(value),
+                  ),
+                ),
+                Container(
+                  height: 50.0,
+                  child: TextField(
+                    controller: desController,
+                    // productProvider.changeName(value);
+                    decoration: InputDecoration(hintText: 'Product Des'),
+                    onChanged: (value) => productProvider.changeDes(value),
                   ),
                 ),
                 SizedBox(
@@ -101,7 +114,8 @@ class _UpdateProductState extends State<UpdateProduct> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
-                      productProvider.updateProducts();
+                      productProvider.removeProduct(widget.product.productId);
+                      productProvider.saveProduct();
 
                       Navigator.of(context).pop();
                     },

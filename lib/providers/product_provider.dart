@@ -94,8 +94,8 @@ class ProductProvider with ChangeNotifier {
     var updateProduct = Product(
         name: name,
         price: _price,
-        kg: kg,
-        des: des,
+        kg: _kg,
+        des: _des,
         filePath: filePath,
         ownerId: ownerId,
         productId: _productId);
