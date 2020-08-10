@@ -35,8 +35,10 @@ class FarmerProducts extends StatelessWidget {
                 itemCount: products.length,
                 itemBuilder: (context, index) {
                   if (products[index].ownerId == user.uid) {
+                    if(products[index].name=="Broccoli"){
                     return Card(
                       child: ListTile(
+                        
                         leading: Image.asset('graphics/broccoli.png'),
                         title: Text(products[index].name),
                         subtitle:
@@ -47,6 +49,83 @@ class FarmerProducts extends StatelessWidget {
                         },
                       ),
                     );
+                  }
+                  else if(products[index].name=="Eggplant"){
+                    return Card(
+                      child: ListTile(
+                        
+                        leading: Image.asset('graphics/eggplant.png'),
+                        //name
+                        title: Text(products[index].name),
+                        subtitle:
+                            Text(products[index].price.toString() + " Rs"),
+                        
+                        onTap: (){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) =>UpdateProduct(products[index])));
+                        },
+                      ),
+                    );
+                  }
+                  else if(products[index].name=="Tomato"){
+                    return Card(
+                      child: ListTile(
+                        
+                        leading: Image.asset('graphics/tomato.png'),
+                        title: Text(products[index].name),
+                        subtitle:
+                            Text(products[index].price.toString() + " Rs"),
+                        
+                        onTap: (){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) =>UpdateProduct(products[index])));
+                        },
+                      ),
+                    );
+                  }
+                  else if(products[index].name=="Potato"){
+                    return Card(
+                      child: ListTile(
+                        
+                        leading: Image.asset('graphics/potato.png'),
+                        title: Text(products[index].name),
+                        subtitle:
+                            Text(products[index].price.toString() + " Rs"),
+                        
+                        onTap: (){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) =>UpdateProduct(products[index])));
+                        },
+                      ),
+                    );
+                  }
+                  else if(products[index].name=="Carrot"){
+                    return Card(
+                      child: ListTile(
+                        
+                        leading: Image.asset('graphics/carrot.png'),
+                        title: Text(products[index].name),
+                        subtitle:
+                            Text(products[index].price.toString() + " Rs"),
+                        
+                        onTap: (){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) =>UpdateProduct(products[index])));
+                        },
+                      ),
+                    );
+                  }
+                  else {
+                    return Card(
+                      child: ListTile(
+                        
+                        leading: Image.asset('graphics/corn.png'),
+                        title: Text(products[index].name),
+                        subtitle:
+                            Text(products[index].price.toString() + " Rs"),
+                        
+                        onTap: (){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) =>UpdateProduct(products[index])));
+                        },
+                      ),
+                    );
+                  }
                   } else {
                     return SizedBox();
                   }
