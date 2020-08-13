@@ -103,7 +103,7 @@ class Home extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              UserProductList()),
+                                              UserProductList(text: 'Tomato')),
                                     );
                                   },
                                   child: Image.asset('graphics/tomato.png',
@@ -119,7 +119,15 @@ class Home extends StatelessWidget {
                           child: Column(
                             children: <Widget>[
                               FlatButton(
-                                  onPressed: () => {},
+                                  onPressed: () => {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  UserProductList(
+                                                      text: 'Broccoli')),
+                                        )
+                                      },
                                   child: Image.asset('graphics/broccoli.png',
                                       height: 50, width: 50)),
                               SizedBox(
@@ -133,7 +141,15 @@ class Home extends StatelessWidget {
                           child: Column(
                             children: <Widget>[
                               FlatButton(
-                                  onPressed: null,
+                                  onPressed: () => {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  UserProductList(
+                                                      text: 'Potato')),
+                                        )
+                                      },
                                   child: Image.asset('graphics/potato.png',
                                       height: 50, width: 50)),
                               SizedBox(
@@ -155,7 +171,15 @@ class Home extends StatelessWidget {
                           child: Column(
                             children: <Widget>[
                               FlatButton(
-                                  onPressed: null,
+                                  onPressed: () => {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  UserProductList(
+                                                      text: 'Eggplant')),
+                                        )
+                                      },
                                   child: Image.asset('graphics/eggplant.png',
                                       height: 50, width: 50)),
                               SizedBox(
@@ -169,7 +193,15 @@ class Home extends StatelessWidget {
                           child: Column(
                             children: <Widget>[
                               FlatButton(
-                                  onPressed: null,
+                                  onPressed: () => {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  UserProductList(
+                                                      text: 'Carrot')),
+                                        )
+                                      },
                                   child: Image.asset('graphics/carrot.png',
                                       height: 50, width: 50)),
                               SizedBox(
@@ -183,7 +215,15 @@ class Home extends StatelessWidget {
                           child: Column(
                             children: <Widget>[
                               FlatButton(
-                                  onPressed: null,
+                                  onPressed: () => {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  UserProductList(
+                                                      text: 'Corn')),
+                                        )
+                                      },
                                   child: Image.asset('graphics/corn.png',
                                       height: 50, width: 50)),
                               SizedBox(
