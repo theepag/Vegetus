@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:vegetus/screens/home/UserProduct.dart';
 
 import '../../models/product.dart';
 
@@ -32,6 +33,13 @@ class _UserProductListState extends State<UserProductList> {
                         title: Text(products[index].name.toString()),
                         subtitle:
                             Text(products[index].price.toString() + " Rs"),
+                        onTap: () => {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => UserProduct(
+                                      productId: products[index].productId)))
+                        },
                       ),
                     );
                   } else {
