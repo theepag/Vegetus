@@ -1,34 +1,55 @@
 import 'package:flutter/material.dart';
-import 'package:vegetus/services/auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 
-class Profile extends StatefulWidget {
-  @override
-  _ProfileState createState() => _ProfileState();
-}
-
-class _ProfileState extends State<Profile> {
-  AuthServices _auth = AuthServices();
+class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Profile'),
-        backgroundColor: Colors.green[600],
-        actions: <Widget>[
-          FlatButton.icon(
-            icon: Icon(
-              Icons.exit_to_app,
-              color: Colors.white,
-            ),
-            label: Text('logout'),
-            textColor: Colors.white,
-            onPressed: () async {
-              await _auth.SignOut();
-            },
-          )
-        ],
+    
+    return Container(
+      child: StreamBuilder(
+        stream: getUsersStreamSnapshots(context),
+        builder: (context, snapshot){
+          if(!snapshot.hasData) return const Text("Loading...");
+          return new ListView.builder(
+            itemCount: snapshot.data.documents.length,
+            itemBuilder: (BuildContext context, int index) => 
+                 buildUsercard(context,snapshot.data.document[index]));
+        }
       ),
-      body: Text("data"),
+    );
+  }
+
+  Stream <QuerySnapshot> getUsersStreamSnapshots(BuildContext context) async*{
+    final uid = await Provider.of(context).auth.getCurrentID();
+    yield* Firestore.instance.collection('users').document(uid).collection('users').snapshots();
+  }
+
+
+  Widget buildUsercard(BuildContext context, DocumentSnapshot user){
+  
+    return new Container(
+      child: Card(
+        child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(top:8.0, bottom:4.0),
+              child: Row(
+                children: <Widget>[
+                  Text(user['name'],style:new TextStyle(
+                    fontSize: 30.0),),
+                    
+                ],
+              ),
+            ),
+
+
+        ],
+        ),
+      ),
+      ),
     );
   }
 }

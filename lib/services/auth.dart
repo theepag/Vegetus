@@ -9,7 +9,11 @@ class AuthServices {
   User _userFromFirebaseUser(FirebaseUser user) {
     return user != null ? User(uid: user.uid) : null;
   }
+//Get UID
+Future<String>getCurrentUID() async{
+  return  (await _auth.currentUser()).uid;
 
+}
   //suth change user stream
   Stream<User> get user {
     return _auth.onAuthStateChanged.map(_userFromFirebaseUser);
