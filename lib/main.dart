@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context)=>ProductProvider()),
         StreamProvider(create: (context)=>firestoreService.getProduct(),
-        
+        child: StreamProvider(create: (context)=>firestoreService.getUsers()),
         ),
       ],
       

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:vegetus/models/user.dart';
 import 'package:vegetus/services/auth.dart';
 import 'package:vegetus/models/farmer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FarmerProfile extends StatelessWidget {
   @override
@@ -31,10 +32,24 @@ class FarmerProfile extends StatelessWidget {
           )
         ],
       ),
-      body: Text(user.uid),
+      //Text(user.uid),
+      body: StreamBuilder(
+        stream: Firestore.instance.collection("users").snapshots(),
+        
+        builder: (context,snapshot){
+         
+          return Column(
+            children: <Widget>[
+               
+              for(var a=0;a<2;a++)
+             if(user.uid==snapshot.data.documents[a]['UserId'])
+             Text(snapshot.data.documents[a]['phone']),
+             
+             
+            ],
+          );
+        },
+      )
     );
   }
 }
-
-    
-  
