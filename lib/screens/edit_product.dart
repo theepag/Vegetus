@@ -40,6 +40,7 @@ class _EditProductState extends State<EditProduct> {
       StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
       var firebaseUser = await FirebaseAuth.instance.currentUser();
       productProvider.changeOwnerId(firebaseUser.uid);
+      print(firebaseUser.uid);
       setState(() {
         Scaffold.of(context).showSnackBar(
             SnackBar(content: Text('Product is successfully uploaded')));
