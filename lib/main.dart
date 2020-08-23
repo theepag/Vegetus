@@ -18,10 +18,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ProductProvider()),
-        StreamProvider(
-          create: (context) => firestoreService.getProduct(),
+        StreamProvider(create: (context)=>firestoreService.getProduct(),
         ),
-      ],
+        StreamProvider(create: (context)=>firestoreService.getUsers()),
+        ],
       child: StreamProvider<User>.value(
           value: AuthServices().user, child: MaterialApp(home: Wrapper())),
     );
