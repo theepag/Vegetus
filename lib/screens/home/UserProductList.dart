@@ -31,8 +31,10 @@ class _UserProductListState extends State<UserProductList> {
                         leading: Image.asset(
                             'graphics/${widget.text.toLowerCase()}.png'),
                         title: Text(products[index].name.toString()),
-                        subtitle:
-                            Text(products[index].price.toString() + " Rs"),
+                        subtitle: Text(products[index].price.toString() +
+                            " Rs\n" +
+                            products[index].price.toString() +
+                            " Kg"),
                         onTap: () => {
                           Navigator.push(
                               context,

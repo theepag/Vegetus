@@ -14,16 +14,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final firestoreService= FirestoreService();
+    final firestoreService = FirestoreService();
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context)=>ProductProvider()),
+        ChangeNotifierProvider(create: (context) => ProductProvider()),
         StreamProvider(create: (context)=>firestoreService.getProduct(),
-        child: StreamProvider(create: (context)=>firestoreService.getUsers()),
         ),
-      ],
-      
-          child: StreamProvider<User>.value(
+        StreamProvider(create: (context)=>firestoreService.getUsers()),
+        ],
+      child: StreamProvider<User>.value(
           value: AuthServices().user, child: MaterialApp(home: Wrapper())),
     );
   }
