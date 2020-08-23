@@ -18,7 +18,8 @@ class Home extends StatelessWidget {
           appBar: AppBar(
             title: Text(
               'Home',
-              style: TextStyle(color: Colors.black),
+              style:
+                  TextStyle(color: Colors.black, fontFamily: 'Celias-Medium'),
             ),
             backgroundColor: Colors.white12,
             elevation: 0.0,
@@ -41,7 +42,7 @@ class Home extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Container(
-                  decoration: BoxDecoration(color: Colors.green),
+                  decoration: BoxDecoration(color: Colors.greenAccent[700]),
                   margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
                   child: Container(
                     margin: EdgeInsets.fromLTRB(60, 35, 60, 40),
@@ -52,14 +53,17 @@ class Home extends StatelessWidget {
                         child: Column(
                           children: <Widget>[
                             Container(
-                              padding: EdgeInsets.fromLTRB(0.0, 25, 0.0, 0.0),
+                              padding: EdgeInsets.fromLTRB(0.0, 10, 0.0, 0.0),
                               child: Text(
                                 'Eat fresh',
                                 style: TextStyle(
-                                    fontSize: 25, color: Colors.white),
+                                    fontSize: 25,
+                                    color: Colors.white,
+                                    fontFamily: 'Celias-Medium'),
                               ),
                             ),
                             Container(
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                               child: Text(
                                 'Vegetable',
                                 style: TextStyle(
@@ -80,7 +84,7 @@ class Home extends StatelessWidget {
                         "Categories",
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                            fontSize: 20, fontFamily: 'Celias-Medium'),
                       ),
                     ),
                   ],
@@ -246,12 +250,12 @@ class Home extends StatelessWidget {
                             children: <Widget>[
                               FlatButton(
                                   onPressed: null,
-                                  child: Image.asset('graphics/tomato.png',
+                                  child: Image.asset('graphics/pumpkin.png',
                                       height: 50, width: 50)),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text("Tomato")
+                              Text("Pumpkin")
                             ],
                           ),
                         ),
@@ -260,12 +264,12 @@ class Home extends StatelessWidget {
                             children: <Widget>[
                               FlatButton(
                                   onPressed: null,
-                                  child: Image.asset('graphics/broccoli.png',
+                                  child: Image.asset('graphics/green-beans.png',
                                       height: 50, width: 50)),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text("Broccoli")
+                              Text("Beans")
                             ],
                           ),
                         ),
@@ -274,12 +278,12 @@ class Home extends StatelessWidget {
                             children: <Widget>[
                               FlatButton(
                                   onPressed: null,
-                                  child: Image.asset('graphics/potato.png',
+                                  child: Image.asset('graphics/chili.png',
                                       height: 50, width: 50)),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text("Potato")
+                              Text("Chili")
                             ],
                           ),
                         ),
