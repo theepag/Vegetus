@@ -59,6 +59,10 @@ flutter:
     - graphics/tomato.png
     - graphics/potato.png
     - graphics/images.jpeg
+    - graphics/beetroot.png
+    - graphics/chili.png
+    - graphics/pumpkin.png
+    - graphics/green-beans.png
 
   fonts:
     - family: Celias-Medium
