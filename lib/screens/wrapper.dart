@@ -43,7 +43,7 @@ class _WrapperState extends State<Wrapper> {
       } else if (userType == 'Customer') {
         return UserNavigation();
       } else {
-        return null;
+        return UserNavigation();
       }
     }
   }

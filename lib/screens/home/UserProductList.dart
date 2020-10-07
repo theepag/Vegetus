@@ -20,6 +20,7 @@ class _UserProductListState extends State<UserProductList> {
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.text),
+          backgroundColor: Colors.green[600],
         ),
         body: (products != null)
             ? ListView.builder(

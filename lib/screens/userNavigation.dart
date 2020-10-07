@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vegetus/screens/cart/cart.dart';
+import 'package:vegetus/screens/userOrder/userOrder.dart';
 import 'package:vegetus/screens/home/home.dart';
 import 'package:vegetus/screens/profile/profile.dart';
 import 'package:vegetus/screens/search/search.dart';
@@ -11,7 +11,7 @@ class UserNavigation extends StatefulWidget {
 
 class _UserNavigationState extends State<UserNavigation> {
   int currentTab = 0;
-  final List<Widget> screens = [Home(), Search(), Cart(), Profile()];
+  final List<Widget> screens = [Home(), Search(), userOrder(), Profile()];
 
   Widget currentScreen = Home();
   final PageStorageBucket backet = PageStorageBucket();
@@ -72,17 +72,17 @@ class _UserNavigationState extends State<UserNavigation> {
               MaterialButton(
                 onPressed: () {
                   setState(() {
-                    currentScreen = Cart();
+                    currentScreen = userOrder();
                     currentTab = 2;
                   });
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Icon(Icons.shopping_cart,
+                    Icon(Icons.local_shipping,
                         color: currentTab == 2 ? Colors.green : Colors.grey),
                     Text(
-                      'Cart',
+                      'Order',
                       style: TextStyle(
                           color: currentTab == 2 ? Colors.green : Colors.grey),
                     )

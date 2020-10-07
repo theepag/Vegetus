@@ -9,7 +9,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class FarmerProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
- //final products=Provider.of<List<Farmer>>(context);
+    //final products=Provider.of<List<Farmer>>(context);
     var firebaseUser = FirebaseAuth.instance.currentUser();
     final user = Provider.of<User>(context);
 
@@ -32,24 +32,7 @@ class FarmerProfile extends StatelessWidget {
           )
         ],
       ),
-      //Text(user.uid),
-      body: StreamBuilder(
-        stream: Firestore.instance.collection("users").snapshots(),
-        
-        builder: (context,snapshot){
-         
-          return Column(
-            children: <Widget>[
-               
-              for(var a=0;a<2;a++)
-             if(user.uid==snapshot.data.documents[a]['UserId'])
-             Text(snapshot.data.documents[a]['phone']),
-             
-             
-            ],
-          );
-        },
-      )
     );
+    //Text(user.uid),
   }
 }

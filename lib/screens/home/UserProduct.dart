@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:vegetus/screens/home/home.dart';
 import 'package:vegetus/shared/loading.dart';
 
 class UserProduct extends StatefulWidget {
@@ -22,16 +24,35 @@ class _UserProductState extends State<UserProduct> {
   String productOwnerId = "";
   bool isLoading = true;
 
+  String orderedKg = "";
+
   _UserProductState(String productId);
   final firestoreInstance = Firestore.instance;
 
   @override
   Widget build(BuildContext context) {
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Home()));
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      content: Text("Your order has been recorded !"),
+      actions: [
+        okButton,
+      ],
+    );
     getImagePath();
     return isLoading
         ? Loading()
         : Scaffold(
+            resizeToAvoidBottomPadding: false,
             appBar: AppBar(
+              backgroundColor: Colors.green[600],
               title: Text(
                 "Vegetable",
                 style: TextStyle(fontFamily: 'Celias-Medium'),
@@ -95,12 +116,57 @@ class _UserProductState extends State<UserProduct> {
                   height: 20,
                 ),
                 Container(
+                  width: 120,
+                  child: TextField(
+                    decoration: InputDecoration(
+                        hintText: "Enter Kg",
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black)),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black))),
+                    onChanged: (value) => {
+                      setState(() {
+                        orderedKg = value;
+                      })
+                    },
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontFamily: "AvenirLTStd-Book",
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
                   child: FlatButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),
                         side: BorderSide(color: Colors.green)),
                     padding: EdgeInsets.fromLTRB(45, 10, 45, 10),
-                    onPressed: () {},
+                    onPressed: () async {
+                      var firebaseUser =
+                          await FirebaseAuth.instance.currentUser();
+
+                      firestoreInstance
+                          .collection("orders")
+                          .document()
+                          .setData({
+                        "ProductName": productName,
+                        "Kg": orderedKg,
+                        "Price": productPrice,
+                        "UserId": firebaseUser.uid,
+                        "OwnerId": productOwnerId
+                      }).then((_) {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return alert;
+                          },
+                        );
+                      });
+                    },
                     child: Text(
                       "Add to Cart",
                       style: TextStyle(
