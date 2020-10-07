@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:vegetus/screens/Order/orders.dart';
-import 'package:vegetus/screens/cart/cart.dart';
 
 import 'package:vegetus/screens/products/farmerProducts.dart';
 import 'package:vegetus/screens/profile/farmerProfile.dart';
