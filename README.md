@@ -34,3 +34,4 @@ samples, guidance on mobile development, and a full API reference.
 ## Farmer ProductList Screen
 
 ![Getting Started](./graphics/productList.jpeg)
+
