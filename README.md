@@ -17,4 +17,4 @@ samples, guidance on mobile development, and a full API reference.
 
 farmerhome.jpeg
 
-![Getting Started](../graphics/farmerhome.jpeg)
+![Getting Started](./graphics/farmerhome.jpeg)
