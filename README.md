@@ -13,17 +13,17 @@ This project is a starting point for a Flutter application.
 
 ## User Search Screen
 
-![Getting Started](./graphics/search.jpeg)
+<img src="./graphics/search.jpeg" alt="drawing" width="300"/>
 
 ## User Order Screen
 
-![Getting Started](./graphics/order.jpeg)
+<img src="./graphics/order.jpeg" alt="drawing" width="300"/>
 
 ## User Profile Screen
 
-![Getting Started](./graphics/profileScreen.jpeg)
+<img src="./graphics/profileScreen.jpeg" alt="drawing" width="300"/>
 
 ## Farmer ProductList Screen
 
-![Getting Started](./graphics/productList.jpeg)
+<img src="./graphics/productList.jpeg" alt="drawing" width="300"/>
 
