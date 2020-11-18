@@ -9,7 +9,7 @@ This project is a starting point for a Flutter application.
 
 ## User Home Screen
 
-![Getting Started](./graphics/farmerhome.jpeg =100x20)
+<img src="./graphics/farmerhome.jpeg" alt="drawing" width="200"/>
 
 ## User Search Screen
 
